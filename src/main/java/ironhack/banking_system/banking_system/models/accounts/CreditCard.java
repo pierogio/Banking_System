@@ -29,8 +29,8 @@ public class CreditCard extends Account {
         this.cardLastInterestDay = cardLastInterestDay;
     }
 
-    public CreditCard(Money balance, AccountHolder primaryOwner, String owner, Money penaltyFee, LocalDate creationDate, AccountStatus accountStatus, Money creditLimit, Money cardInterestRate, LocalDate cardLastInterestDay) {
-        super(balance, primaryOwner, owner, penaltyFee, creationDate, accountStatus);
+    public CreditCard(Money balance, AccountHolder primaryOwner, Money penaltyFee, LocalDate creationDate, AccountStatus accountStatus, Money creditLimit, Money cardInterestRate, LocalDate cardLastInterestDay) {
+        super(balance, primaryOwner, penaltyFee, creationDate, accountStatus);
         this.creditLimit = creditLimit;
         this.cardInterestRate = cardInterestRate;
         this.cardLastInterestDay = cardLastInterestDay;

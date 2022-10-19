@@ -26,8 +26,8 @@ public class CheckingAccount  extends Account {
         this.lastInterestDay = lastInterestDay;
     }
 
-    public CheckingAccount(Money balance, AccountHolder primaryOwner, String owner, Money penaltyFee, LocalDate creationDate, AccountStatus accountStatus, Money minimumBalance, BigDecimal monthlyMaintenance, LocalDate lastInterestDay) {
-        super(balance, primaryOwner, owner, penaltyFee, creationDate, accountStatus);
+    public CheckingAccount(Money balance, AccountHolder primaryOwner, Money penaltyFee, LocalDate creationDate, AccountStatus accountStatus, Money minimumBalance, BigDecimal monthlyMaintenance, LocalDate lastInterestDay) {
+        super(balance, primaryOwner, penaltyFee, creationDate, accountStatus);
         this.minimumBalance = minimumBalance;
         this.monthlyMaintenance = monthlyMaintenance;
         this.lastInterestDay = lastInterestDay;

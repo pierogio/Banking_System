@@ -28,7 +28,8 @@ public class AccountHolder extends User{
     private Address primaryAddress;
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride( name = "address", column = @Column(name = "mailingAddress")),
+            @AttributeOverride( name = "street", column = @Column(name = "streetAddress")),
+            @AttributeOverride( name = "city", column = @Column(name = "cityAddress")),
             @AttributeOverride( name = "postalCode", column = @Column(name = "mailingPostalCode")),
             @AttributeOverride( name = "country", column = @Column(name = "mailingCountry"))})
     private Address mailingAddress;

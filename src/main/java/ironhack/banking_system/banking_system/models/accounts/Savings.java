@@ -20,8 +20,8 @@ public class Savings extends Account {
     public Savings() {
     }
 
-    public Savings(Money balance, String primaryOwner, String owner, double penaltyFee, LocalDate creationDate, AccountStatus accountStatus) {
-        super(balance, primaryOwner, owner, penaltyFee, creationDate, accountStatus);
+    public Savings(Money balance, AccountHolder primaryOwner, Money penaltyFee, LocalDate creationDate, AccountStatus accountStatus) {
+        super(balance, primaryOwner, penaltyFee, creationDate, accountStatus);
     }
 
     public Savings(Money minimumBalance, BigDecimal interestRate, LocalDate lastInterestDate) {
@@ -30,8 +30,8 @@ public class Savings extends Account {
         this.lastInterestDate = lastInterestDate;
     }
 
-    public Savings(Money balance, AccountHolder primaryOwner, String owner, Money penaltyFee, LocalDate creationDate, AccountStatus accountStatus, Money minimumBalance, BigDecimal interestRate, LocalDate lastInterestDate) {
-        super(balance, primaryOwner, owner, penaltyFee, creationDate, accountStatus);
+    public Savings(Money balance, AccountHolder primaryOwner, Money penaltyFee, LocalDate creationDate, AccountStatus accountStatus, Money minimumBalance, BigDecimal interestRate, LocalDate lastInterestDate) {
+        super(balance, primaryOwner, penaltyFee, creationDate, accountStatus);
         this.minimumBalance = minimumBalance;
         this.savingInterestRate = interestRate;
         this.lastInterestDate = lastInterestDate;

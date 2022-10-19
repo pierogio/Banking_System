@@ -1,9 +1,15 @@
 package ironhack.banking_system.banking_system.repositories;
 
 import ironhack.banking_system.banking_system.models.accounts.Account;
+import ironhack.banking_system.banking_system.models.users.AccountHolder;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
+
+    List<Account> findByPrimaryOwner(AccountHolder primaryOwner);
+    List<Account> findBySecondaryOwner(AccountHolder secondaryOwner);
 }

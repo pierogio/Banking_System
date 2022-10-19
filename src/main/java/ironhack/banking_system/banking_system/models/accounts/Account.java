@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Account {
 
     @Id
@@ -24,7 +25,7 @@ public abstract class Account {
     @JoinColumn(name = "secondary_owner_user_id")
     private AccountHolder secondaryOwner;
 
-    public String owner;
+
 
     //esperando implementar parte de seguridad
     // public String secretKey;
@@ -47,10 +48,9 @@ public abstract class Account {
         this.secondaryOwner = secondaryOwner;
     }
 
-    public Account(Money balance, AccountHolder primaryOwner, String owner, Money penaltyFee, LocalDate creationDate, AccountStatus accountStatus) {
+    public Account(Money balance, AccountHolder primaryOwner, Money penaltyFee, LocalDate creationDate, AccountStatus accountStatus) {
         this.balance = balance;
         this.primaryOwner = primaryOwner;
-        this.owner = owner;
         this.penaltyFee = penaltyFee;
         this.creationDate = creationDate;
         this.accountStatus = accountStatus;
@@ -78,13 +78,6 @@ public abstract class Account {
         this.primaryOwner = primaryOwner;
     }
 
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
 
     public Money getPenaltyFee() {
         return penaltyFee;

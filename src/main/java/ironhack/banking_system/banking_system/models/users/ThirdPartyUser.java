@@ -5,27 +5,25 @@ import javax.persistence.Entity;
 @Entity
 public class ThirdPartyUser extends User {
 
-    // hashed key
-
-    private String thirdPartyUserName;
+    private String hashedKey;
 
     public ThirdPartyUser() {
     }
 
-    public ThirdPartyUser(String name) {
+    public ThirdPartyUser(String hashedKey) {
+        this.hashedKey = hashedKey;
+    }
+
+    public ThirdPartyUser(String name, String hashedKey) {
         super(name);
+        this.hashedKey = hashedKey;
     }
 
-    public ThirdPartyUser(String name, String thirdPartyUserName) {
-        super(name);
-        this.thirdPartyUserName = thirdPartyUserName;
+    public String getHashedKey() {
+        return hashedKey;
     }
 
-    public String getThirdPartyUserName() {
-        return thirdPartyUserName;
-    }
-
-    public void setThirdPartyUserName(String thirdPartyUserName) {
-        this.thirdPartyUserName = thirdPartyUserName;
+    public void setHashedKey(String hashedKey) {
+        this.hashedKey = hashedKey;
     }
 }
