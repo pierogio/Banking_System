@@ -7,12 +7,6 @@ public class Admin extends User{
 
     private String adminUserName;
 
-     /* esperar a implementar la parte de seguridad
-    private String password;
-
-    private roles?
-     */
-
     public Admin() {
     }
 
@@ -20,8 +14,8 @@ public class Admin extends User{
         this.adminUserName = adminUserName;
     }
 
-    public Admin(String name, String adminUserName) {
-        super(name);
+    public Admin(String name, String password, String adminUserName) {
+        super(name, password);
         this.adminUserName = adminUserName;
     }
 

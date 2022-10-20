@@ -12,27 +12,16 @@ import java.util.List;
 @Entity
 public class AccountHolder extends User{
 
-    private String mail;
-
-    private String phone;
-
-    /* esperar a implementar la parte de seguridad
-    private String password;
-
-    private roles?
-     */
-    private String userName;
-
     private LocalDate dateOfBirth;
     @Embedded
     private Address primaryAddress;
-    @Embedded
+   /* @Embedded
     @AttributeOverrides({
-            @AttributeOverride( name = "street", column = @Column(name = "streetAddress")),
-            @AttributeOverride( name = "city", column = @Column(name = "cityAddress")),
+            @AttributeOverride( name = "street", column = @Column(name = "mailingStreet")),
+            //@AttributeOverride( name = "city", column = @Column(name = "mailingCity")),
             @AttributeOverride( name = "postalCode", column = @Column(name = "mailingPostalCode")),
             @AttributeOverride( name = "country", column = @Column(name = "mailingCountry"))})
-    private Address mailingAddress;
+    private Address mailingAddress;*/
 
     @OneToMany(mappedBy = "primaryOwner")
     @JsonIgnore
@@ -46,61 +35,15 @@ public class AccountHolder extends User{
     public AccountHolder() {
     }
 
-    public AccountHolder(Address primaryAddress, Address mailingAddress) {
-        this.primaryAddress = primaryAddress;
-        this.mailingAddress = mailingAddress;
-    }
-
-    public AccountHolder(String name, Address primaryAddress, Address mailingAddress) {
-        super(name);
-        this.primaryAddress = primaryAddress;
-        this.mailingAddress = mailingAddress;
-    }
-
-    public AccountHolder(String name, String userName, LocalDate dateOfBirth) {
-        super(name);
-        this.userName = userName;
+    public AccountHolder(String name, String password, LocalDate dateOfBirth, Address primaryAddress, Address mailingAddress, List<Account> accounts, List<Account> accounts2) {
+        super(name, password);
         this.dateOfBirth = dateOfBirth;
+        this.primaryAddress = primaryAddress;
+       // this.mailingAddress = mailingAddress;
+        this.accounts = accounts;
+        this.accounts2 = accounts2;
     }
 
-    public AccountHolder(String mail, String phone) {
-        this.mail = mail;
-        this.phone = phone;
-    }
-
-    public AccountHolder(String name, String mail, String phone) {
-        super(name);
-        this.mail = mail;
-        this.phone = phone;
-    }
-
-    public AccountHolder(String name) {
-        super(name);
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
@@ -118,11 +61,27 @@ public class AccountHolder extends User{
         this.primaryAddress = primaryAddress;
     }
 
-    public Address getMailingAddress() {
+   /* public Address getMailingAddress() {
         return mailingAddress;
     }
 
     public void setMailingAddress(Address mailingAddress) {
         this.mailingAddress = mailingAddress;
+    }*/
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
+
+    public List<Account> getAccounts2() {
+        return accounts2;
+    }
+
+    public void setAccounts2(List<Account> accounts2) {
+        this.accounts2 = accounts2;
     }
 }

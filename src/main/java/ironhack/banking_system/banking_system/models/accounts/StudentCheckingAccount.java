@@ -17,9 +17,5 @@ public class StudentCheckingAccount extends Account {
         super(balance, primaryOwner, penaltyFee, creationDate, accountStatus);
     }
 
-    public StudentCheckingAccount(AccountHolder secondaryOwner) {
-        super(secondaryOwner);
-    }
-
 
 }

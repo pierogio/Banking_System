@@ -7,11 +7,12 @@ import ironhack.banking_system.banking_system.models.users.AccountHolder;
 import javax.persistence.Entity;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 public class CheckingAccount  extends Account {
 
-    private Money minimumBalance;
+    private Money minimumBalance = new Money(BigDecimal.valueOf(1000));
 
     private BigDecimal monthlyMaintenance;
 
@@ -64,4 +65,21 @@ public class CheckingAccount  extends Account {
         this.lastInterestDay = lastInterestDay;
     }
 
+    @Override
+    public void setBalance(Money balance) {
+        if (minimumBalance == null) {
+            minimumBalance = new Money(BigDecimal.valueOf(1000));
+        }
+        super.setBalance(balance);
+        if (minimumBalance.getAmount().compareTo(balance.getAmount()) < 0)
+            super.setBalance(new Money(super.getBalance().decreaseAmount(super.getPenaltyFee())));
+
+    }
+
+    public void accountMonthlyMaintenance() {
+        if (Period.between(lastInterestDay, LocalDate.now()).getMonths() >= 1) {
+            setBalance(new Money(getBalance().decreaseAmount(monthlyMaintenance)));
+            lastInterestDay = LocalDate.now();
+        }
+    }
 }

@@ -5,6 +5,7 @@ import ironhack.banking_system.banking_system.enums.AccountStatus;
 import ironhack.banking_system.banking_system.models.users.AccountHolder;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -34,7 +35,7 @@ public abstract class Account {
     @AttributeOverrides({
             @AttributeOverride( name = "currency", column = @Column(name = "penaltyCurrency")),
             @AttributeOverride( name = "amount", column = @Column(name = "penaltyAmount"))})
-    public Money penaltyFee;
+    public Money penaltyFee = new Money(BigDecimal.valueOf(40));
 
     public LocalDate creationDate;
 

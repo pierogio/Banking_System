@@ -21,10 +21,6 @@ public class AccountHolderController {
     @Autowired
     AccountHolderRepository accountHolderRepository;
 
-    //Add AccountHolder
-    public AccountHolder addAccountHolderUser(AccountHolder accountHolder) {
-        return accountHolderRepository.save(accountHolder);
-    }
 
     @RequestMapping(value = "/accountHolder/account", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)

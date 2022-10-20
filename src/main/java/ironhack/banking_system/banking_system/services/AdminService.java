@@ -59,7 +59,7 @@ public class AdminService {
             creditCard.setPrimaryOwner((accountHolder));
             creditCard.setCreationDate(LocalDate.now());
             creditCard.setCreditLimit(new Money(BigDecimal.valueOf(1000)));
-            creditCard.setCardInterestRate(new Money(BigDecimal.valueOf(0.2)));
+            creditCard.setCardInterestRate(BigDecimal.valueOf(0.2));
             creditCard.setCardLastInterestDay(LocalDate.now());
             creditCard.setPenaltyFee(new Money(BigDecimal.valueOf(40)));
             return accountRepository.save(creditCard);

@@ -2,6 +2,9 @@ package ironhack.banking_system.banking_system.services;
 
 import ironhack.banking_system.banking_system.embeddable.Money;
 import ironhack.banking_system.banking_system.models.accounts.Account;
+import ironhack.banking_system.banking_system.models.accounts.CheckingAccount;
+import ironhack.banking_system.banking_system.models.accounts.CreditCard;
+import ironhack.banking_system.banking_system.models.accounts.Savings;
 import ironhack.banking_system.banking_system.models.users.AccountHolder;
 import ironhack.banking_system.banking_system.repositories.AccountHolderRepository;
 import ironhack.banking_system.banking_system.repositories.AccountRepository;
@@ -39,7 +42,15 @@ public class AccountHolderService {
     }
 
     public Money getBalanceAccountHolder(Long accountNumber) {
-        return accountRepository.findById(accountNumber).get().getBalance();
+        Account account = accountRepository.findById(accountNumber).get();
+        if(account instanceof CreditCard){
+            ((CreditCard) account).cardInterestRate();
+        }else if(account instanceof Savings){
+            ((Savings) account).checkInterestRate();
+        } else if (account instanceof CheckingAccount) {
+            ((CheckingAccount) account).accountMonthlyMaintenance();
+        }
+        return account.getBalance();
     }
 
     public Money transferBalanceAccountHolder(Long accountNumber, BigDecimal amount, Long accountNumber2) {
