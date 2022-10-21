@@ -27,7 +27,6 @@ public abstract class User {
 
     public User() {
     }
-//no se si funcionará(password encoder con autowired
     public User(String name, String password) {
         this.name = name;
         this.password = password;

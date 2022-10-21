@@ -14,14 +14,10 @@ import java.time.Period;
 
 @Entity
 public class CreditCard extends Account {
-    @DecimalMax(value = "100000.00")
+
     @Embedded
     private Money creditLimit = new Money(BigDecimal.valueOf(100));
     @DecimalMin(value = "0.1")
-  /*  @Embedded
-    @AttributeOverrides({
-            @AttributeOverride( name = "currency", column = @Column(name = "cardCurrency")),
-            @AttributeOverride( name = "amount", column = @Column(name = "cardAmount"))})*/
     private BigDecimal cardInterestRate = new BigDecimal(0.2);
 
     private LocalDate cardLastInterestDay;

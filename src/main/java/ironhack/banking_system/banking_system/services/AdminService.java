@@ -37,9 +37,9 @@ public class AdminService {
     @Autowired
     ThirdPartyUserRepository thirdPartyUserRepository;
 
-    /* public AccountHolder addAccountHolderUser(AccountHolder accountHolder) {
+    public AccountHolder addAccountHolderUser(AccountHolder accountHolder) {
          return accountHolderRepository.save(accountHolder);
-     }*/
+     }
     public Money getBalanceAsAdmin(Long accountNumber) {
         return accountRepository.findById(accountNumber).get().getBalance();
     }
@@ -70,7 +70,7 @@ public class AdminService {
             savings.setLastInterestDate(LocalDate.now());
             savings.setPrimaryOwner((accountHolder));
             savings.setCreationDate(LocalDate.now());
-            savings.setMinimumBalance(new Money(BigDecimal.valueOf(1000)));
+            savings.setMinimumBalance(BigDecimal.valueOf(1000));
             savings.setCreationDate(LocalDate.now());
             savings.setPenaltyFee(new Money(BigDecimal.valueOf(40)));
             return accountRepository.save(savings);
@@ -79,7 +79,7 @@ public class AdminService {
                 CheckingAccount checkingAccount = new CheckingAccount();
                 checkingAccount.setBalance(new Money(BigDecimal.valueOf(1000)));
                 checkingAccount.setPrimaryOwner(accountHolder);
-                checkingAccount.setMinimumBalance(new Money(BigDecimal.valueOf(250)));
+                checkingAccount.setMinimumBalance((BigDecimal.valueOf(250)));
                 checkingAccount.setPenaltyFee(new Money(BigDecimal.valueOf(40)));
                 checkingAccount.setMonthlyMaintenance(BigDecimal.valueOf(12));
                 checkingAccount.setCreationDate(LocalDate.now());

@@ -26,11 +26,6 @@ public abstract class Account {
     @JoinColumn(name = "secondary_owner_user_id")
     private AccountHolder secondaryOwner;
 
-
-
-    //esperando implementar parte de seguridad
-    // public String secretKey;
-
     @Embedded
     @AttributeOverrides({
             @AttributeOverride( name = "currency", column = @Column(name = "penaltyCurrency")),

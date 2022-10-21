@@ -12,16 +12,18 @@ import java.util.List;
 @Entity
 public class AccountHolder extends User{
 
+    private String name;
+
     private LocalDate dateOfBirth;
     @Embedded
     private Address primaryAddress;
-   /* @Embedded
+
+    @Embedded
     @AttributeOverrides({
-            @AttributeOverride( name = "street", column = @Column(name = "mailingStreet")),
-            //@AttributeOverride( name = "city", column = @Column(name = "mailingCity")),
+            @AttributeOverride( name = "address", column = @Column(name = "mailingAddress")),
             @AttributeOverride( name = "postalCode", column = @Column(name = "mailingPostalCode")),
             @AttributeOverride( name = "country", column = @Column(name = "mailingCountry"))})
-    private Address mailingAddress;*/
+    private Address mailingAddress;
 
     @OneToMany(mappedBy = "primaryOwner")
     @JsonIgnore
@@ -35,11 +37,16 @@ public class AccountHolder extends User{
     public AccountHolder() {
     }
 
+    public AccountHolder(String name, String password, String name1) {
+        super(name, password);
+        this.name = name1;
+    }
+
     public AccountHolder(String name, String password, LocalDate dateOfBirth, Address primaryAddress, Address mailingAddress, List<Account> accounts, List<Account> accounts2) {
         super(name, password);
         this.dateOfBirth = dateOfBirth;
         this.primaryAddress = primaryAddress;
-       // this.mailingAddress = mailingAddress;
+        this.mailingAddress = mailingAddress;
         this.accounts = accounts;
         this.accounts2 = accounts2;
     }
@@ -61,13 +68,13 @@ public class AccountHolder extends User{
         this.primaryAddress = primaryAddress;
     }
 
-   /* public Address getMailingAddress() {
+    public Address getMailingAddress() {
         return mailingAddress;
     }
 
     public void setMailingAddress(Address mailingAddress) {
         this.mailingAddress = mailingAddress;
-    }*/
+    }
 
     public List<Account> getAccounts() {
         return accounts;
@@ -83,5 +90,15 @@ public class AccountHolder extends User{
 
     public void setAccounts2(List<Account> accounts2) {
         this.accounts2 = accounts2;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 }
