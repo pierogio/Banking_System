@@ -22,15 +22,16 @@ public class AccountHolderController {
     AccountHolderRepository accountHolderRepository;
 
 
-    @RequestMapping(value = "/accountHolder/account", method = RequestMethod.GET)
+     //getAccountHolderAccount, getBalanceAccountHolder, transferBalanceAccountHolder
+    @GetMapping("/accountHolder/account/{accountHolderId}")
     @ResponseStatus(HttpStatus.OK)
     public List<Account> getAccountHolderAccount(@PathVariable Long accountHolderId) {
         return accountHolderService.getAccountHolderAccount(accountHolderId);
     }
 
-    @GetMapping("/balance/accountHolder")
+    @GetMapping("/balance/accountHolder/{accountNumber}")
     @ResponseStatus(HttpStatus.OK)
-    public Money getBalanceAccountHolder(@RequestBody Long accountNumber) {
+    public Money getBalanceAccountHolder(@PathVariable Long accountNumber) {
         return accountHolderService.getBalanceAccountHolder(accountNumber);
     }
     @PatchMapping("/balance/transfer")

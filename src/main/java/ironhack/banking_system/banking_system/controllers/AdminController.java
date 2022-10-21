@@ -23,10 +23,10 @@ public class AdminController {
     @Autowired
     AccountRepository accountRepository;
 
-    //get balance as Admin
-    @GetMapping("/balance/accountNumber")
+    //get balance as Admin ok
+    @GetMapping("/balance/accountNumber/{accountNumber}")
     @ResponseStatus(HttpStatus.OK)
-    public Money getBalanceAsAdmin(@RequestBody Long accountNumber){
+    public Money getBalanceAsAdmin(@PathVariable Long accountNumber){
         return adminService.getBalanceAsAdmin(accountNumber);
     }
     //add balance
@@ -36,7 +36,7 @@ public class AdminController {
         return adminService.addBalanceAsAdmin(addDecreaseBalanceDTO.getAccountNumber(), addDecreaseBalanceDTO.getAmount());
     }
     //add new account
-    @PostMapping("/account/create")
+    @PostMapping("/account/add")
     @ResponseStatus(HttpStatus.OK)
     public Account addNewAccount(@RequestBody AddNewAccountDTO addNewAccountDTO){
         return adminService.addNewAccount(addNewAccountDTO.getUserId(),addNewAccountDTO.getAccountType());
@@ -48,11 +48,12 @@ public class AdminController {
         return adminService.updateAccountStatus(updateAccountStatusDTO.getAccountNumber(),updateAccountStatusDTO.getAccountStatus());
     }
     //delete account
-    @DeleteMapping("/account/delete")
+    @DeleteMapping("/account/delete/{accountNumber}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteAccount(@RequestBody Long accountNumber){
+    public void deleteAccount(@PathVariable Long accountNumber){
         adminService.deleteAccount(accountNumber);
     }
+
     //decrease balance
     @PatchMapping("/balance/decrease")
     @ResponseStatus(HttpStatus.OK)
