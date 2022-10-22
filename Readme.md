@@ -45,7 +45,7 @@ ACCOUNT
 
 Accounts are divided in four categories that extends account’s abstract class parameters:
 
-•	CheckingAccount:
+•	CheckingAccount
  Have a primaryOwner which age is equal or more than 24, a minimumBalance of 250 and a monthlyMaintenanceFee of 12.
 
 •	StudentCheckingAccount
