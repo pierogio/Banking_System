@@ -56,3 +56,5 @@ Accounts are divided in four categories that extends account’s abstract class 
 
 •	CreditCard
  CreditCard have a creditLimit of 100 and interestRate of 0.2.
+
+Postscript: Due to the fact that only a few accounts have been created, the tests run properly only when run one by one.

@@ -22,7 +22,6 @@ public class AccountHolderController {
     AccountHolderRepository accountHolderRepository;
 
 
-     //getAccountHolderAccount, getBalanceAccountHolder, transferBalanceAccountHolder
     @GetMapping("/accountHolder/account/{accountHolderId}")
     @ResponseStatus(HttpStatus.OK)
     public List<Account> getAccountHolderAccount(@PathVariable Long accountHolderId) {

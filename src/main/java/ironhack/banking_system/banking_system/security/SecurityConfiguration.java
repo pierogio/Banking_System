@@ -36,8 +36,19 @@ public class SecurityConfiguration {
         httpSecurity.httpBasic();
 
         httpSecurity.authorizeRequests()
-                .mvcMatchers(HttpMethod.GET, "/users").hasAnyRole("USER")
-                .mvcMatchers(HttpMethod.GET,"/admin/**").hasRole("ADMIN")
+                //.mvcMatchers(HttpMethod.GET, "/users").hasAnyRole("USER")
+                //.mvcMatchers(HttpMethod.GET,"/admin/**").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.GET, "/accountHolder/account/{accountHolderId}").hasAnyRole("USER")
+                .mvcMatchers(HttpMethod.GET, "/balance/accountHolder/{accountNumber}").hasAnyRole("USER")
+                .mvcMatchers(HttpMethod.POST, "/balance/transfer").hasAnyRole("USER")
+                .mvcMatchers(HttpMethod.PATCH,"/balance/add").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.POST,"/account/add").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.GET,"/balance/accountNumber/{accountNumber}").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.PATCH,"/account/status").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.DELETE,"/account/delete/{accountNumber}").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.PATCH,"/balance/decrease").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.POST,"/thirdparty/add").hasRole("ADMIN")
+
                 .anyRequest().permitAll();
 
         httpSecurity.csrf().disable();

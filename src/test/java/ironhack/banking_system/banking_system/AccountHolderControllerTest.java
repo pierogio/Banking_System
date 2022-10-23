@@ -41,10 +41,8 @@ public class AccountHolderControllerTest {
     public void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 
-        //getAccountHolderAccount, getBalanceAccountHolder, transferBalanceAccountHolder
-
     }
-    @Test
+    @Test //OK
     @DisplayName("check if getAccountHolder works")
     void get_AccountHolder_Account_OK() throws Exception {
         MvcResult mvcResult = mockMvc.perform(get("/accountHolder/account/2")).andExpect(status().isOk()).andReturn();
@@ -52,23 +50,24 @@ public class AccountHolderControllerTest {
         assertTrue(mvcResult.getResponse().getContentAsString().contains("SuperOscar"));
     }
 
-    @Test
+    @Test //Ok
     @DisplayName("check if getBalanceAccountHolder works")
     void get_Balance_AccountHolder_OK() throws Exception {
         MvcResult mvcResult = mockMvc.perform(get("/balance/accountHolder/3")).andExpect(status().isOk()).andReturn();
         //System.out.println(mvcResult.getResponse().getContentAsString());
         assertTrue(mvcResult.getResponse().getContentAsString().contains("860.00"));
     }
-    @Test //No Funciona
+    @Test //Ok
     @DisplayName("check if transferBalanceAccountHolder works")
     void transfer_Balance_AccountHolder_OK() throws Exception {
-        TransferBalanceDTO transferBalanceDTO = new TransferBalanceDTO(100L, BigDecimal.valueOf(25.00), 500L);
+        TransferBalanceDTO transferBalanceDTO = new TransferBalanceDTO(2L, BigDecimal.valueOf(25.00), 3L);
         String body = objectMapper.writeValueAsString(transferBalanceDTO);
         System.out.println(body);
         MvcResult mvcResult = mockMvc.perform(patch("/balance/transfer").content(body)
                 .contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
-        System.out.println(mvcResult.getResponse().getContentAsString());
-        //assertTrue(mvcResult.getResponse().getContentAsString().contains("10.00"));
+        //System.out.println(mvcResult.getResolvedException().toString());
+        //System.out.println(mvcResult.getResponse().getContentAsString());
+        assertTrue(mvcResult.getResponse().getContentAsString().contains("975.00"));
 
     }
 }
